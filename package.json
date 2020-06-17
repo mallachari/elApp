@@ -1,0 +1,79 @@
+{
+  "name": "elapp",
+  "version": "1.0.0",
+  "description": "electron app",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mallachari/elApp.git"
+  },
+  "author": "JJ",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "build.all": "electron-builder --linux --win --publish=never",
+    "build.win": "electron-builder --win --publish=never",
+    "build.lin": "electron-builder --linux --publish=never",
+    "release": "electron-builder --linux --win",
+    "postinstall": "electron-builder install-app-deps || echo 'electron-builder not found, skipping install-app-deps'"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "devDependencies": {
+    "electron": "^9.0.4",
+    "electron-builder": "^22.7.0"
+  },
+  "dependencies": {
+    "electron-updater": "^4.3.1"
+  },
+  "builda": {
+    "appId": "your.id",
+    "mac": {
+      "category": "your.app.category.type"
+    }
+  },
+  "build": {
+    "appId": "mallachari.elapp",
+    "compression": "normal",
+    "asar": true,
+    "generateUpdatesFilesForAllChannels": true,
+    "artifactName": "mallachari-elapp-${os}.${ext}",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "mallachari",
+        "repo": "elApp"
+      }
+    ],
+    "appImage": {
+      "artifactName": "mallachari-elapp-${os}-${arch}.${ext}"
+    },
+    "linux": {
+      "category": "Development",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
+    }
+  }
+}
